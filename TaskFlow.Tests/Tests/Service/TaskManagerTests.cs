@@ -1,6 +1,6 @@
 using TaskFlow.Console;
 
-namespace TaskFlow.Tests.Tests;
+namespace TaskFlow.Tests.Tests.Service;
 
 public class TaskManagerTests
 {
