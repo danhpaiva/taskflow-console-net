@@ -44,4 +44,49 @@ public class TaskManagerTests
         // Assert
         Assert.Null(task);
     }
+
+    [Fact]
+    public void CompleteTask_Should_Return_False_When_Task_Does_Not_Exist()
+    {
+        // Arrange
+        var manager = new TaskManager();
+        var nonExistentId = Guid.NewGuid();
+
+        // Act
+        var result = manager.CompleteTask(nonExistentId);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void CompleteTask_Should_Mark_Task_As_Completed_When_Task_Exists()
+    {
+        // Arrange
+        var manager = new TaskManager();
+        var task = manager.AddTask("Estudar XUnit");
+
+        // Act
+        var result = manager.CompleteTask(task.Id);
+
+        // Assert
+        Assert.True(result);
+        Assert.True(task.IsCompleted);
+    }
+
+    [Fact]
+    public void GetById_Should_Return_Task_When_Task_Exists()
+    {
+        // Arrange
+        var manager = new TaskManager();
+        var task = manager.AddTask("Aprender C# 10");
+
+        // Act
+        var foundTask = manager.GetById(task.Id);
+
+        // Assert
+        Assert.NotNull(foundTask);
+        Assert.Equal(task.Id, foundTask.Id);
+        Assert.Equal("Aprender C# 10", foundTask.Title);
+    }
 }
