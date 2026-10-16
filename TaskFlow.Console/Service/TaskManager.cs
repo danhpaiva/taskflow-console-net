@@ -1,6 +1,6 @@
 using TaskFlow.Console.Domain;
 
-namespace TaskFlow.Console;
+namespace TaskFlow.Console.Service;
 
 public class TaskManager
 {
